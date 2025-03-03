@@ -104,7 +104,7 @@ public:
                     const unsigned int primID, const int materialId,
                     const viennaray::TracingData<NumericType> *globalData,
                     RNG &Rng) override final {
-    assert(primID < globalData->getVectorData(1).size() &&
+    assert(primID < globalData->getVectorData(0).size() &&
            "PrimID out of bounds");
 
     // H2O surface coverage

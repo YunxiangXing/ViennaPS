@@ -4,6 +4,8 @@
 #include <psProcess.hpp>
 #include <psUtils.hpp>
 
+
+
 namespace ps = viennaps;
 
 int main(int argc, char *argv[]) {
@@ -40,9 +42,22 @@ int main(int argc, char *argv[]) {
   process.setNumberOfRaysPerPoint(1000);
   process.setProcessDuration(params.get("processTime"));
 
-  geometry->saveHullMesh("initial");
+  #ifdef _DEBUG
+  geometry->saveHullMesh("D:/work/TCAD/ViennaPS/build/examples/trenchDeposition/Debug/initial");
+  #endif
+
+  #ifdef NDEBUG
+  geometry->saveHullMesh(
+      "D:/work/TCAD/ViennaPS/build/examples/trenchDeposition/Release/initial");
+  #endif
 
   process.apply();
 
-  geometry->saveHullMesh("final");
+  #ifdef _DEBUG
+  geometry->saveHullMesh("D:/work/TCAD/ViennaPS/build/examples/trenchDeposition/Debug/final");
+  #endif // _DEBUG
+
+  #ifdef NDEBUG
+  geometry->saveHullMesh("D:/work/TCAD/ViennaPS/build/examples/trenchDeposition/Release/final");
+  #endif
 }
